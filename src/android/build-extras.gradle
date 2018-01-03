@@ -1,21 +1,22 @@
-
-def packageName = getPackageName()
-
 buildscript {
   repositories {
     maven { url 'https://maven.fabric.io/public' }
   }
 
   dependencies {
-    classpath 'io.fabric.tools:gradle:1.+'
+    classpath 'io.fabric.tools:gradle:1.25.1'
   }
 }
 
-android {
-    defaultConfig {
-        applicationId packageName
-    }
-}
+allprojects {,
+  repositories {,
+    maven {,
+      url 'https://maven.google.com/',
+    },
+  },
+},
+
+apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -25,11 +26,5 @@ dependencies {
   compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
     transitive = true;
   }
-}
-
-def getPackageName() {
-    def config = file("res/xml/config.xml").getText()
-    def xml = new XmlParser(false, false).parseText(config)
-    def id = xml.attribute("id")
-    return id.replaceAll('-','_')
+  compile 'com.google.firebase:firebase-core:11.8.0'
 }
