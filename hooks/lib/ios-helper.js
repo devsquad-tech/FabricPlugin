@@ -19,6 +19,8 @@ module.exports = {
      */
     addShellScriptBuildPhase: function (context, xcodeProjectPath) {
 
+        // @todo revisar ios com cocoapods
+        return;
         var pluginConfig = utilities.getPluginConfig("ios");
         var xcode = context.requireCordovaModule("xcode");
 
